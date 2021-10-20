@@ -123,7 +123,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
-			paramValue += 0.01f;
+			paramValue += 0.001f;
 			if (paramValue > 1)
 			{
 				paramValue = 1;
@@ -142,7 +142,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
-			paramValue -= 0.01f;
+			paramValue -= 0.001f;
 			if (paramValue > 1)
 			{
 				paramValue = 1;
@@ -161,7 +161,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
-			paramValue += 0.1f;
+			paramValue += 0.01f;
 			if (paramValue > 1)
 			{
 				paramValue = 1;
@@ -180,7 +180,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
-			paramValue -= 0.1f;
+			paramValue -= 0.01f;
 			if (paramValue > 1)
 			{
 				paramValue = 1;
