@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "AccessiVST.h"
 #include <stdio.h>
-#ifdef _win32
+#ifdef _WIN32
 #include <windows.h>
 #include "Tolk.h"
 #endif
@@ -41,7 +41,7 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 		effectData = effect->getAeffect ();
 		effect->setEditor (this);
 	}
-#ifdef _win32
+#ifdef _WIN32
 	Tolk_TrySAPI(true);
 	Tolk_Load();
 #endif
@@ -49,7 +49,7 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 
 AccessiVST::~AccessiVST ()
 {
-#ifdef _win32
+#ifdef _WIN32
 	Tolk_Unload();
 #endif
 }
@@ -333,7 +333,7 @@ bool AccessiVST::onKeyUp (VstKeyCode& keyCode)
 
 void AccessiVST::speak ()
 {
-#ifdef _win32
+#ifdef _WIN32
 	int strsize = MultiByteToWideChar(CP_UTF8, 0, speakText, -1, NULL, 0);
 	wchar_t *text2speak = new wchar_t[strsize];
 	MultiByteToWideChar(CP_UTF8, 0, speakText, -1, (wchar_t *)text2speak, strsize);
@@ -344,7 +344,7 @@ void AccessiVST::speak ()
 
 void AccessiVST::interrupt ()
 {
-#ifdef _win32
+#ifdef _WIN32
 	Tolk_Silence();
 #endif
 }
