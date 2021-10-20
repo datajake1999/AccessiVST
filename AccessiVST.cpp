@@ -27,6 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 AccessiVST::AccessiVST (AudioEffect* effect)
 : AEffEditor (effect)
 {
+	memset(&vstrect, 0, sizeof(vstrect));
 	memset(&paramDisplay, 0, sizeof(paramDisplay));
 	memset(&paramLabel, 0, sizeof(paramLabel));
 	memset(&paramName, 0, sizeof(paramName));
