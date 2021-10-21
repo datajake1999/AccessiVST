@@ -35,6 +35,8 @@ public:
 	virtual bool onKeyUp (VstKeyCode& keyCode);
 private:
 	ERect vstrect;
+	void speechStartup();
+	void speechShutdown();
 	void speak();
 	void interrupt();
 	AEffect *effectData;

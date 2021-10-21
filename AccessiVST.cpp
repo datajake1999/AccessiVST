@@ -43,17 +43,12 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 		effectData = effect->getAeffect ();
 		effect->setEditor (this);
 	}
-#ifdef _WIN32
-	Tolk_TrySAPI(true);
-	Tolk_Load();
-#endif
+	speechStartup ();
 }
 
 AccessiVST::~AccessiVST ()
 {
-#ifdef _WIN32
-	Tolk_Unload();
-#endif
+	speechShutdown ();
 }
 
 bool AccessiVST::getRect (ERect** rect)
@@ -424,6 +419,21 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 bool AccessiVST::onKeyUp (VstKeyCode& keyCode)
 {
 	return false;
+}
+
+void AccessiVST::speechStartup ()
+{
+#ifdef _WIN32
+	Tolk_TrySAPI(true);
+	Tolk_Load();
+#endif
+}
+
+void AccessiVST::speechShutdown ()
+{
+#ifdef _WIN32
+	Tolk_Unload();
+#endif
 }
 
 void AccessiVST::speak ()
