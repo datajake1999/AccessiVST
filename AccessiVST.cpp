@@ -328,6 +328,12 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 			sprintf(speakText, "Plug-in reset");
 		}
 		break;
+	case VKEY_F9:
+		if (effect)
+		{
+			sprintf(speakText, "Unique ID of plug-in: %x", effectData->uniqueID);
+		}
+		break;
 	case VKEY_ESCAPE:
 		if (effect)
 		{
