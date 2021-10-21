@@ -46,6 +46,8 @@ private:
 	int progIndex;
 	char progName[32];
 	char speakText[512];
+	bool speechMuted;
+	bool disabled;
 };
 
 #endif

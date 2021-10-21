@@ -36,6 +36,8 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 	paramIndex = 0;
 	paramValue = 0;
 	progIndex = 0;
+	speechMuted = false;
+	disabled = false;
 	if (effect)
 	{
 		effectData = effect->getAeffect ();
@@ -85,6 +87,10 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 	memset(&paramLabel, 0, sizeof(paramLabel));
 	memset(&paramName, 0, sizeof(paramName));
 	memset(&progName, 0, sizeof(progName));
+	if (disabled && keyCode.virt != VKEY_INSERT)
+	{
+		return false;
+	}
 	switch(keyCode.virt)
 	{
 	case 0:
@@ -327,10 +333,40 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 	case VKEY_CONTROL:
 		interrupt();
 		return true;
+	case VKEY_DELETE:
+		if (!speechMuted)
+		{
+			speechMuted = true;
+			sprintf(speakText, "Speech muted");
+		}
+		else
+		{
+			speechMuted = false;
+			sprintf(speakText, "Speech unmuted");
+		}
+		speak();
+		return true;
+	case VKEY_INSERT:
+		if (!disabled)
+		{
+			disabled = true;
+			sprintf(speakText, "AccessiVST disabled");
+		}
+		else
+		{
+			disabled = false;
+			sprintf(speakText, "AccessiVST enabled");
+		}
+		speak();
+		return true;
 	default:
 		sprintf(speakText, "Key undefined: key code = %d", keyCode.virt);
 		speak();
 		return false;
+	}
+	if (speechMuted)
+	{
+		return true;
 	}
 	speak();
 	return true;
