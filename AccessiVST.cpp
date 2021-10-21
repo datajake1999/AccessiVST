@@ -353,6 +353,19 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 			}
 		}
 		break;
+	case VKEY_F12:
+		if (effect)
+		{
+			if (effectData->flags & effFlagsProgramChunks)
+			{
+				sprintf(speakText, "Programs are stored as chunks");
+			}
+			else
+			{
+				sprintf(speakText, "Programs are stored normally");
+			}
+		}
+		break;
 	case VKEY_ESCAPE:
 		if (effect)
 		{
