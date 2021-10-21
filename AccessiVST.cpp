@@ -348,6 +348,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_ALT:
 		break;
+	case VKEY_SHIFT:
+		sprintf(speakText, "Speech buffer cleared");
+		speak();
+		memset(&speakText, 0, sizeof(speakText));
+		return true;
 	case VKEY_CONTROL:
 		interrupt();
 		return true;
