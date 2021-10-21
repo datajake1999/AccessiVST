@@ -315,6 +315,14 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F8:
+		if (effect)
+		{
+			effect->close ();
+			effect->open ();
+			sprintf(speakText, "Plug-in reset");
+		}
+		break;
+	case VKEY_ALT:
 		break;
 	case VKEY_CONTROL:
 		interrupt();
