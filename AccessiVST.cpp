@@ -87,6 +87,8 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 	memset(&progName, 0, sizeof(progName));
 	switch(keyCode.virt)
 	{
+	case 0:
+		return false;
 	case VKEY_RIGHT:
 		if (effect)
 		{
