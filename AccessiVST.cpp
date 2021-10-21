@@ -328,6 +328,18 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 			sprintf(speakText, "Plug-in reset");
 		}
 		break;
+	case VKEY_ESCAPE:
+		if (effect)
+		{
+			sprintf(speakText, "Initial delay: %d", effectData->initialDelay);
+		}
+		break;
+	case VKEY_SHIFT:
+		if (effect)
+		{
+			sprintf(speakText, "Plug-in version: %f", effectData->version/1000.0f);
+		}
+		break;
 	case VKEY_ALT:
 		break;
 	case VKEY_CONTROL:
