@@ -340,6 +340,19 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 			sprintf(speakText, "Plug-in version: %f", effectData->version/1000.0f);
 		}
 		break;
+	case VKEY_F11:
+		if (effect)
+		{
+			if (effectData->flags & effFlagsCanDoubleReplacing)
+			{
+				sprintf(speakText, "Plug-in supports processing both 32 and 64 bit audio");
+			}
+			else
+			{
+				sprintf(speakText, "Plug-in can only process 32 bit audio");
+			}
+		}
+		break;
 	case VKEY_ESCAPE:
 		if (effect)
 		{
