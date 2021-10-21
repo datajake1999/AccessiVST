@@ -334,16 +334,16 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 			sprintf(speakText, "Unique ID of plug-in: %x", effectData->uniqueID);
 		}
 		break;
+	case VKEY_F10:
+		if (effect)
+		{
+			sprintf(speakText, "Plug-in version: %f", effectData->version/1000.0f);
+		}
+		break;
 	case VKEY_ESCAPE:
 		if (effect)
 		{
 			sprintf(speakText, "Initial delay: %d", effectData->initialDelay);
-		}
-		break;
-	case VKEY_SHIFT:
-		if (effect)
-		{
-			sprintf(speakText, "Plug-in version: %f", effectData->version/1000.0f);
 		}
 		break;
 	case VKEY_ALT:
