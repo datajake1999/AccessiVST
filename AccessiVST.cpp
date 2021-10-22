@@ -38,6 +38,7 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 	progIndex = 0;
 	speechMuted = false;
 	disabled = false;
+	helpMode = false;
 	if (effect)
 	{
 		effectData = effect->getAeffect ();
@@ -92,6 +93,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		return false;
 	case VKEY_RIGHT:
 	case VKEY_NUMPAD6:
+		if (helpMode)
+		{
+			sprintf(speakText, "Go to next parameter");
+			break;
+		}
 		if (effect)
 		{
 			paramIndex++;
@@ -109,6 +115,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_LEFT:
 	case VKEY_NUMPAD4:
+		if (helpMode)
+		{
+			sprintf(speakText, "Go to previous parameter");
+			break;
+		}
 		if (effect)
 		{
 			paramIndex--;
@@ -126,6 +137,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_UP:
 	case VKEY_NUMPAD8:
+		if (helpMode)
+		{
+			sprintf(speakText, "Increase parameter value");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -146,6 +162,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_DOWN:
 	case VKEY_NUMPAD2:
+		if (helpMode)
+		{
+			sprintf(speakText, "Decrease parameter value");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -166,6 +187,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_PAGEUP:
 	case VKEY_NUMPAD9:
+		if (helpMode)
+		{
+			sprintf(speakText, "Increase parameter value by larger steps");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -186,6 +212,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_PAGEDOWN:
 	case VKEY_NUMPAD3:
+		if (helpMode)
+		{
+			sprintf(speakText, "Decrease parameter value by larger steps");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -206,6 +237,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_HOME:
 	case VKEY_NUMPAD7:
+		if (helpMode)
+		{
+			sprintf(speakText, "Set parameter to highest value");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = 1;
@@ -217,6 +253,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_END:
 	case VKEY_NUMPAD1:
+		if (helpMode)
+		{
+			sprintf(speakText, "Set parameter to lowest value");
+			break;
+		}
 		if (effect)
 		{
 			paramValue = 0;
@@ -228,6 +269,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_SPACE:
 	case VKEY_NUMPAD5:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce current parameter state");
+			break;
+		}
 		if (effect)
 		{
 			effect->getParameterDisplay (paramIndex, paramDisplay);
@@ -238,6 +284,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_TAB:
 	case VKEY_NUMPAD0:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce name and index of the current program");
+			break;
+		}
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -247,6 +298,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_RETURN:
 	case VKEY_MULTIPLY:
+		if (helpMode)
+		{
+			sprintf(speakText, "Go to next program");
+			break;
+		}
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -266,6 +322,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_BACK:
 	case VKEY_DIVIDE:
+		if (helpMode)
+		{
+			sprintf(speakText, "Go to previous program");
+			break;
+		}
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -284,36 +345,66 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s", progName);
 		break;
 	case VKEY_F1:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce current sample rate");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Current sample rate: %d", (int)effect->getSampleRate ());
 		}
 		break;
 	case VKEY_F2:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce current block size");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Current block size: %d", effect->getBlockSize ());
 		}
 		break;
 	case VKEY_F3:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce number of inputs");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Number of inputs: %d", effectData->numInputs);
 		}
 		break;
 	case VKEY_F4:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce number of outputs");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Number of outputs: %d", effectData->numOutputs);
 		}
 		break;
 	case VKEY_F5:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce number of parameters");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Number of parameters: %d", effectData->numParams);
 		}
 		break;
 	case VKEY_F6:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce number of programs");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Number of programs: %d", effectData->numPrograms);
@@ -321,6 +412,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_F7:
 	case VKEY_CLEAR:
+		if (helpMode)
+		{
+			sprintf(speakText, "Reset the plug-in");
+			break;
+		}
 		if (effect)
 		{
 			effect->suspend ();
@@ -330,6 +426,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_F8:
 	case VKEY_SELECT:
+		if (helpMode)
+		{
+			sprintf(speakText, "Reset the plug-in (alternate method)");
+			break;
+		}
 		if (effect)
 		{
 			effect->close ();
@@ -338,18 +439,33 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F9:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce unique ID of plug-in as Hex");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Unique ID of plug-in: %x", effectData->uniqueID);
 		}
 		break;
 	case VKEY_F10:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce plug-in version");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Plug-in version: %f", effectData->version/1000.0f);
 		}
 		break;
 	case VKEY_F11:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce highest supported bit depth");
+			break;
+		}
 		if (effect)
 		{
 			if (effectData->flags & effFlagsCanDoubleReplacing)
@@ -363,6 +479,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F12:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce how the plug-in stores programs");
+			break;
+		}
 		if (effect)
 		{
 			if (effectData->flags & effFlagsProgramChunks)
@@ -376,6 +497,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_ESCAPE:
+		if (helpMode)
+		{
+			sprintf(speakText, "Announce initial delay");
+			break;
+		}
 		if (effect)
 		{
 			sprintf(speakText, "Initial delay: %d", effectData->initialDelay);
@@ -383,18 +509,38 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		break;
 	case VKEY_ALT:
 	case VKEY_ADD:
+		if (helpMode)
+		{
+			sprintf(speakText, "Repeat last speech string");
+			break;
+		}
 		break;
 	case VKEY_SHIFT:
 	case VKEY_DECIMAL:
+		if (helpMode)
+		{
+			sprintf(speakText, "Clear speech buffer");
+			break;
+		}
 		sprintf(speakText, "Speech buffer cleared");
 		speak();
 		memset(&speakText, 0, sizeof(speakText));
 		return true;
 	case VKEY_CONTROL:
 	case VKEY_SUBTRACT:
+		if (helpMode)
+		{
+			sprintf(speakText, "Interrupt speech");
+			break;
+		}
 		interrupt();
 		return true;
 	case VKEY_DELETE:
+		if (helpMode)
+		{
+			sprintf(speakText, "Mute/unmute speech");
+			break;
+		}
 		if (!speechMuted)
 		{
 			speechMuted = true;
@@ -408,6 +554,11 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		speak();
 		return true;
 	case VKEY_INSERT:
+		if (helpMode)
+		{
+			sprintf(speakText, "Disable/enable AccessiVST");
+			break;
+		}
 		if (!disabled)
 		{
 			disabled = true;
@@ -420,6 +571,18 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		speak();
 		return true;
+	case VKEY_PAUSE:
+		if (helpMode)
+		{
+			sprintf(speakText, "Enable/disable help mode. Returning to normal operation");
+			helpMode = false;
+		}
+		else
+		{
+			helpMode = true;
+			sprintf(speakText, "Help mode enabled");
+		}
+		break;
 	default:
 		sprintf(speakText, "Key undefined: key code = %d", keyCode.virt);
 		speak();

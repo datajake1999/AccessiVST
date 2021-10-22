@@ -50,6 +50,7 @@ private:
 	char speakText[512];
 	bool speechMuted;
 	bool disabled;
+	bool helpMode;
 };
 
 #endif
