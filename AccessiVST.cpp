@@ -571,6 +571,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		speak();
 		return true;
+	case VKEY_HELP:
 	case VKEY_PAUSE:
 		if (helpMode)
 		{
