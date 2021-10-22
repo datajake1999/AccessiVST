@@ -536,6 +536,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		interrupt();
 		return true;
 	case VKEY_DELETE:
+	case VKEY_SEPARATOR:
 		if (helpMode)
 		{
 			sprintf(speakText, "Mute/unmute speech");
