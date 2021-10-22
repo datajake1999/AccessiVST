@@ -91,6 +91,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 	case 0:
 		return false;
 	case VKEY_RIGHT:
+	case VKEY_NUMPAD6:
 		if (effect)
 		{
 			paramIndex++;
@@ -107,6 +108,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s", paramName);
 		break;
 	case VKEY_LEFT:
+	case VKEY_NUMPAD4:
 		if (effect)
 		{
 			paramIndex--;
@@ -123,6 +125,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s", paramName);
 		break;
 	case VKEY_UP:
+	case VKEY_NUMPAD8:
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -142,6 +145,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_DOWN:
+	case VKEY_NUMPAD2:
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -161,6 +165,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_PAGEUP:
+	case VKEY_NUMPAD9:
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -180,6 +185,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_PAGEDOWN:
+	case VKEY_NUMPAD3:
 		if (effect)
 		{
 			paramValue = effect->getParameter (paramIndex);
@@ -199,6 +205,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_HOME:
+	case VKEY_NUMPAD7:
 		if (effect)
 		{
 			paramValue = 1;
@@ -209,6 +216,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_END:
+	case VKEY_NUMPAD1:
 		if (effect)
 		{
 			paramValue = 0;
@@ -219,6 +227,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s %s", paramDisplay, paramLabel);
 		break;
 	case VKEY_SPACE:
+	case VKEY_NUMPAD5:
 		if (effect)
 		{
 			effect->getParameterDisplay (paramIndex, paramDisplay);
@@ -228,6 +237,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s: %s %s", paramName, paramDisplay, paramLabel);
 		break;
 	case VKEY_TAB:
+	case VKEY_NUMPAD0:
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -236,6 +246,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "Current program name: %s. Current program index: %d", progName, progIndex);
 		break;
 	case VKEY_RETURN:
+	case VKEY_MULTIPLY:
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -254,6 +265,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		sprintf(speakText, "%s", progName);
 		break;
 	case VKEY_BACK:
+	case VKEY_DIVIDE:
 		if (effect)
 		{
 			progIndex = effect->getProgram ();
@@ -368,13 +380,16 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_ALT:
+	case VKEY_ADD:
 		break;
 	case VKEY_SHIFT:
+	case VKEY_DECIMAL:
 		sprintf(speakText, "Speech buffer cleared");
 		speak();
 		memset(&speakText, 0, sizeof(speakText));
 		return true;
 	case VKEY_CONTROL:
+	case VKEY_SUBTRACT:
 		interrupt();
 		return true;
 	case VKEY_DELETE:
