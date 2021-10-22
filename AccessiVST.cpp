@@ -320,6 +320,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F7:
+	case VKEY_CLEAR:
 		if (effect)
 		{
 			effect->suspend ();
@@ -328,6 +329,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F8:
+	case VKEY_SELECT:
 		if (effect)
 		{
 			effect->close ();
