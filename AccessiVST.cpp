@@ -439,6 +439,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F9:
+	case VKEY_PRINT:
 		if (helpMode)
 		{
 			sprintf(speakText, "Announce unique ID of plug-in as Hex");
@@ -450,6 +451,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F10:
+	case VKEY_SNAPSHOT:
 		if (helpMode)
 		{
 			sprintf(speakText, "Announce plug-in version");
@@ -461,6 +463,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F11:
+	case VKEY_ENTER:
 		if (helpMode)
 		{
 			sprintf(speakText, "Announce highest supported bit depth");
@@ -479,6 +482,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_F12:
+	case VKEY_NEXT:
 		if (helpMode)
 		{
 			sprintf(speakText, "Announce how the plug-in stores programs");
