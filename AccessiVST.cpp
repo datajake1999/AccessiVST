@@ -90,6 +90,12 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 	switch(keyCode.virt)
 	{
 	case 0:
+		if (helpMode)
+		{
+			sprintf(speakText, "%c", keyCode.character);
+			speak();
+			return true;
+		}
 		return false;
 	case VKEY_RIGHT:
 	case VKEY_NUMPAD6:
