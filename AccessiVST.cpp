@@ -501,6 +501,7 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		break;
 	case VKEY_ESCAPE:
+	case VKEY_EQUALS:
 		if (helpMode)
 		{
 			sprintf(speakText, "Announce initial delay");
