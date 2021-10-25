@@ -38,6 +38,7 @@ AccessiVST::AccessiVST (AudioEffect* effect)
 	progIndex = 0;
 	speechMuted = false;
 	disabled = false;
+	debugMode = false;
 	helpMode = false;
 	if (effect)
 	{
@@ -583,6 +584,24 @@ bool AccessiVST::onKeyDown (VstKeyCode& keyCode)
 		}
 		speak();
 		return true;
+	case VKEY_NUMLOCK:
+	case VKEY_SCROLL:
+		if (helpMode)
+		{
+			sprintf(speakText, "Enable/disable debug mode");
+			break;
+		}
+		if (!debugMode)
+		{
+			debugMode = true;
+			sprintf(speakText, "Debug mode enabled");
+		}
+		else
+		{
+			debugMode = false;
+			sprintf(speakText, "Debug mode disabled");
+		}
+		break;
 	case VKEY_HELP:
 	case VKEY_PAUSE:
 		if (helpMode)
@@ -631,6 +650,10 @@ void AccessiVST::speechShutdown ()
 
 void AccessiVST::speak ()
 {
+	if (debugMode)
+	{
+		printf("%s\n", speakText);
+	}
 #ifdef _WIN32
 	int strsize = MultiByteToWideChar(CP_UTF8, 0, speakText, -1, NULL, 0);
 	wchar_t *text2speak = new wchar_t[strsize];
