@@ -635,6 +635,10 @@ bool AccessiVST::onKeyUp (VstKeyCode& keyCode)
 
 void AccessiVST::speechStartup ()
 {
+	if (debugMode)
+	{
+		printf("Speech system started\n");
+	}
 #ifdef _WIN32
 	Tolk_TrySAPI(true);
 	Tolk_Load();
@@ -643,6 +647,10 @@ void AccessiVST::speechStartup ()
 
 void AccessiVST::speechShutdown ()
 {
+	if (debugMode)
+	{
+		printf("Speech system stopped\n");
+	}
 #ifdef _WIN32
 	Tolk_Unload();
 #endif
@@ -652,7 +660,7 @@ void AccessiVST::speak ()
 {
 	if (debugMode)
 	{
-		printf("%s\n", speakText);
+		printf("Speech string: %s\n", speakText);
 	}
 #ifdef _WIN32
 	int strsize = MultiByteToWideChar(CP_UTF8, 0, speakText, -1, NULL, 0);
@@ -665,6 +673,10 @@ void AccessiVST::speak ()
 
 void AccessiVST::interrupt ()
 {
+	if (debugMode)
+	{
+		printf("Speech interrupted\n");
+	}
 #ifdef _WIN32
 	Tolk_Silence();
 #endif
